@@ -1,9 +1,22 @@
 extends layouts/frontend
 
+
 block content
+
     .ui.middle.aligned.center.aligned.grid
         .six.wide.column
-            form.ui.large.form(method="post", action="/")
+            if flash
+                .ui.card.center
+                    .content
+                        if flash.type === 'success'
+                            .ui.success.message
+                                .header success
+                                    p= flash.message
+                        else if flash.type === 'error'
+                            .ui.error.message
+                                .header Error
+                                    p= flash.message
+            form.ui.large.form(method="post", action="/signup")
                 .ui.stacked.segment
                     +field('text', 'firstName', 'First name')
                     +field('text', 'lastName', 'Last name')
@@ -13,7 +26,10 @@ block content
                     button(type="submit").ui.fluid.large.teal.submit.button Login
 
                 .ui.error.message
-
+        if flash
+            .ui.error.message
+                .header Error
+                p= flash.message
 
 mixin field(type, name, placeholder)
     .field
