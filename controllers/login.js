@@ -25,10 +25,11 @@ export default async function login(req, res) {
     password = sha256Hasher.update(password).digest("hex")
     const user = await UserModel.findOne({ email : email,password: password });
 
-    // const user = await UserModel.findOne({ email : email });
 
     console.log(user)
     let msg = '';
+    let typeMsg = '';
+
     if (user){
 
         const date = new Date();
@@ -45,17 +46,21 @@ export default async function login(req, res) {
             { expiresIn: '24h' }   // validité temps
         );
 
-        // dd(session)
         // on la garde la session
         req.session.token = token;
+        typeMsg = 'success';
+        msg = `Welcome ${email} ` ; //@todo replace by firstname
+
+        req.session.flash = {
+            type: typeMsg,
+            message: msg
+        };
 
         // on l'envois au client
         // res.json({ token });
 
-
-        msg = ' go dashbord';
         // res.render("dashboard");
-        res.redirect('securedRoute/dashboard')
+        res.redirect('securedRoute/dashboard') // @todo pass flash msg to dashboard
     }else{
         msg = 'email ou mot de passe incorrete';
     }

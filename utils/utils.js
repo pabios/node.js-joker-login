@@ -34,8 +34,3 @@ export const authMiddleware = (req,res,next) =>{
 }
 
 
-// FLASH MESSAGE
-export   const msg = (req, res) => {
-    req.flash('flash_message', 'Je suis un flash message');
-    res.redirect('/')
-}

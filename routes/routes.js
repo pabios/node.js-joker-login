@@ -8,16 +8,17 @@ const router = Router();
 import HomeController from "../controllers/home.js";
 import  SignUpController from '../controllers/signUp.js'
 import  LoginController from '../controllers/login.js'
-import {authMiddleware, msg} from "../utils/utils.js";
+import {authMiddleware} from "../utils/utils.js";
 import dashboard from '../controllers/dashboard.js'
 
 
 // Déclaration des routes
+// GET
 router.get("/", HomeController);
+router.get('/securedRoute/dashboard', authMiddleware,dashboard);
+
+// POST
 router.post("/signup", SignUpController);
 router.post("/login",LoginController );
-router.get('/flash',msg)
-
-router.get('/securedRoute/dashboard', authMiddleware,dashboard);
 
 export default router;
