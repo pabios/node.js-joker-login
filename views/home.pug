@@ -2,6 +2,9 @@ extends layouts/frontend
 
 
 block content
+    div.ui.sizer.vertical.segment
+        div.ui.huge.header
+            div.ui.middle.aligned.center.aligned.grid Joker Post API Form USER and CONTACT
 
     .ui.middle.aligned.center.aligned.grid
         .six.wide.column
@@ -16,23 +19,45 @@ block content
                             .ui.error.message
                                 .header Error
                                     p= flash.message
+            h1 Inscription
             form.ui.large.form(method="post", action="/signup")
                 .ui.stacked.segment
+                    +field('text', 'site', 'le site')
                     +field('text', 'firstName', 'First name')
                     +field('text', 'lastName', 'Last name')
                     +field('email', 'email', 'your.email@address.tld')
                     +field('password', 'password', 'Password')
                     +field('password', 'password_confirm', 'Confirm password')
-                    button(type="submit").ui.fluid.large.teal.submit.button Login
+                    button(type="submit").ui.fluid.large.teal.submit.button sign up
 
                 .ui.error.message
         if flash
             .ui.error.message
                 .header Error
                 p= flash.message
+        div
+        .six.wide.column
+            h1 Contact
+            form.ui.large.form(method="post", action="/contact")
+                .ui.stacked.segment
+                    +field('text', 'site', 'le site')
+                    +field('text', 'mobile', 'your mobile')
+                    +field('text', 'name', ' Name')
+                    +field('text', 'subject', ' Subject')
+                    +field('email', 'email', 'your.email@address.tld')
+                    +field('text', 'message', ' Message')
+                    button(type="submit").ui.fluid.large.teal.submit.button contact us
+
+
+
+
 
 mixin field(type, name, placeholder)
     .field
         .ui.left.icon.input
             i.icon(class=(type === 'password' ? 'lock' : 'user'))
             input(type=type, name=name, placeholder=placeholder)
+
+
+
+

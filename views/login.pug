@@ -6,6 +6,7 @@ block content
             h1 Connection
             form.ui.large.form(method="post", action="/login")
                 .ui.stacked.segment
+                    +field('text', 'site', 'le site')
                     +field('email', 'email', 'your.email@address.tld')
                     +field('password', 'password', 'Password')
                     button(type="submit").ui.fluid.large.teal.submit.button Login

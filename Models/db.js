@@ -21,6 +21,7 @@ export const connectToMongo = async () => {
     }
 }
 
+
 // const User = mongoose.model('User', userSchema);
 
 // atlas

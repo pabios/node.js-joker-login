@@ -3,7 +3,7 @@ import {UserModel} from "../Models/User.js";
 import crypto from   "crypto"
 
 dotenv.config();
-const { AUTH_SECRET  } = process.env;
+const { AUTH_SECRET,APP_SITE   } = process.env;
 
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -19,8 +19,9 @@ export default async function signUp(req, res) {
     connectToMongo().then(r => r);
 
     // / Extraction des données depuis "req.body" (fourni par express.urlencoded() dans server.js)
-    let { firstName, lastName, email, password,password_confirm } = req.body;
+    let {site, firstName, lastName, email, password,password_confirm } = req.body;
 
+    //site = APP_SITE; // which site would you sign up
 
     console.log(email)
 
@@ -47,7 +48,7 @@ export default async function signUp(req, res) {
 
             if(!user){
                 password = hash
-                 await UserModel.insertMany({ firstName, lastName, email, password });
+                 await UserModel.insertMany({site, firstName, lastName, email, password });
 
                 // await UserModel.insertMany({ firstName, lastName, email, password });
 

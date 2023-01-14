@@ -6,13 +6,13 @@ import crypto from "crypto";
 
 
 dotenv.config();
-const { AUTH_SECRET  } = process.env;
+const { AUTH_SECRET,APP_SITE   } = process.env;
 
 export default async function login(req, res) {
     console.log('bienvenu login')
     connectToMongo().then(r => console.log(r));
 
-    let { email, password } = req.body;
+    let {site, email, password } = req.body;
 
     console.log(email)
     console.log(password)
@@ -23,7 +23,8 @@ export default async function login(req, res) {
 
     // hash the string
     password = sha256Hasher.update(password).digest("hex")
-    const user = await UserModel.findOne({ email : email,password: password });
+     // site = APP_SITE
+    const user = await UserModel.findOne({site:site, email : email,password: password });
 
 
     console.log(user)

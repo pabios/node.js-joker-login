@@ -10,6 +10,7 @@ import  SignUpController from '../controllers/signUp.js'
 import  LoginController from '../controllers/login.js'
 import {authMiddleware} from "../utils/utils.js";
 import dashboard from '../controllers/dashboard.js'
+import ContactController from '../controllers/contact.js'
 
 
 // Déclaration des routes
@@ -20,5 +21,6 @@ router.get('/securedRoute/dashboard', authMiddleware,dashboard);
 // POST
 router.post("/signup", SignUpController);
 router.post("/login",LoginController );
+router.post("/contact",ContactController );
 
 export default router;
