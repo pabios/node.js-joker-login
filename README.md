@@ -57,5 +57,5 @@ Les controllers de l'application sont définis dans controllers/
 ### Contribution
 Les contributions sont les bienvenues. Pour des changements importants, veuillez ouvrir une issue pour discuter de ce que vous aimeriez changer.
 
-###Licence
+### Licence
 Le projet est sous licence [MIT].
